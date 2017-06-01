@@ -1,6 +1,6 @@
-#server.R
+# server.R
 
-#libraries
+# Libraries
 library(dplyr)
 library(rgeos)
 library(shiny)
@@ -11,10 +11,14 @@ library(rjson)
 library(jsonlite)
 library(anytime)
 
-#scripts
+# Scripts
 source('scripts/setup.R')
 
-#shinyserver
+# shinyServer
 shinyServer(function(input, output) {
+  
+  # Text rendering for about and insights
+  output$about <- renderText({about})
+  output$insights <- renderText({insights})
   
 })
