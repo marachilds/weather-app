@@ -88,6 +88,10 @@ weatherData <- function(city, state, day) {
  
   # convert UNIX time to Dates
   weather.df$time <- anytime(weather.df$time, asUTC = location.timezone)
+  
+  # convert temperatures from Celsius to Fahrenheit
+  weather.df$temperature <- (weather.df$temperature * (9/5)) + 32
+  weather.df$apparentTemperature <- (weather.df$apparentTemperature * (9/5)) + 32
 
   return(weather.df) 
 }
