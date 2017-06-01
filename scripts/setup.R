@@ -80,13 +80,13 @@ weatherData <- function(city, state, day) {
   weather.body <- content(weather.response, "text")
   weather.results <- fromJSON(weather.body)
   
-  location.timezome <- weather.results$timezone
+  location.timezone <- weather.results$timezone
   
   # Gets data sorted by hour
   weather.df <- weather.results$hourly$data
  
   # convert UNIX time to Dates
-  weather.df$time <- anytime(weather.df$time, asUTC = TRUE)
+  weather.df$time <- anytime(weather.df$time, asUTC = location.timezone)
 
   return(weather.df) 
 }
