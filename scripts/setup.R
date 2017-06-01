@@ -24,6 +24,22 @@ findLatLong <- function(geo_db, city, state) {
 
 # Global Variables 
 # ----------------
+# Options list for states and capital cities
+cities <- c("Montgomery, Alabama", "Juneau, Alaska", "Phoenix, Arizona",
+            "Little Rock, Arkansas", "Sacramento, California", "Denver, Colorado",
+            "Hartford, Connecticut", "Dover, Delaware", "Tallahassee, Florida",
+            "Atlanta, Georgia", "Honolulu, Hawaii", "Boise, Idaho", "Springfield, Illinois",
+            "Indianapolis, Indiana", "Des Moines, Iowa", "Topeka, Kansas", "Frankfort, Kentucky", 
+            "Baton Rouge, Louisiana", "Augusta, Maine", "Annapolis, Maryland", "Boston, Massachusetts", 
+            "Lansing, Michigan", "St. Paul, Minnesota", "Jackson, Mississippi", "Jefferson City, Missouri",
+            "Helena, Montana", "Lincoln, Nebraska", "Carson City, Nevada", "Concord, New Hampshire",
+            "Trenton, New Jersey", "Santa Fe, New Mexico", "Albany, New York", "Raleigh, North Carolina",
+            "Bismarck, North Dakota", "Columbus, Ohio", "Oklahoma City, Oklahoma", "Salem, Oregon",  
+            "Harrisburg, Pennsylvania", "Providence, Rhode Island", "Columbia, South Carolina",
+            "Pierre, South Dakota", "Nashville, Tennessee", "Austin, Texas", "Salt Lake City, Utah",
+            "Montpelier, Vermont", "Richmond, Virginia", "Olympia, Washington", "Charleston, West Virginia",
+            "Madison, Wisconsin", "Cheyenne, Wyoming"
+)
 
 # Retrieves dataset for towns and cities in Canada/US with latitudinal and longitudinal data for API calls
 geo_data <- read.csv("scripts/geo_data.csv")
@@ -63,6 +79,8 @@ weatherData <- function(city, state, day) {
   weather.response <- GET(weather.uri, query = weather.params)
   weather.body <- content(weather.response, "text")
   weather.results <- fromJSON(weather.body)
+  
+  location.timezome <- weather.results$timezone
   
   # Gets data sorted by hour
   weather.df <- weather.results$hourly$data
