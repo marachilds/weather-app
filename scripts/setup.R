@@ -80,6 +80,7 @@ weatherData <- function(city, state, day) {
   weather.body <- content(weather.response, "text")
   weather.results <- fromJSON(weather.body)
   
+  # retrieve location time zone to appropriately convert UNIX time
   location.timezone <- weather.results$timezone
   
   # Gets data sorted by hour
@@ -91,4 +92,3 @@ weatherData <- function(city, state, day) {
   return(weather.df) 
 }
 
-?anytime
