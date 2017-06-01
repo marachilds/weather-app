@@ -22,30 +22,9 @@ findLatLong <- function(geo_db, city, state) {
 }
 
 
-
-
 # Global Variables 
 # ----------------
 
-# Global Variables (Mara)
-# ----------------
-
-# Options list for states and capital cities
-cities <- c("Montgomery, Alabama", "Juneau, Alaska", "Phoenix, Arizona",
-             "Little Rock, Arkansas", "Sacramento, California", "Denver, Colorado",
-             "Hartford, Connecticut", "Dover, Delaware", "Tallahassee, Florida",
-             "Atlanta, Georgia", "Honolulu, Hawaii", "Boise, Idaho", "Springfield, Illinois",
-             "Indianapolis, Indiana", "Des Moines, Iowa", "Topeka, Kansas", "Frankfort, Kentucky",
-             "Baton Rouge, Louisiana", "Augusta, Maine", "Annapolis, Maryland", "Boston, Massachusetts",
-             "Lansing, Michigan", "St. Paul, Minnesota", "Jackson, Mississippi", "Jefferson City, Missouri",
-             "Helena, Montana", "Lincoln, Nebraska", "Carson City, Nevada", "Concord, New Hampshire",
-             "Trenton, New Jersey", "Santa Fe, New Mexico", "Albany, New York", "Raleigh, North Carolina",
-             "Bismarck, North Dakota", "Columbus, Ohio", "Oklahoma City, Oklahoma", "Salem, Oregon",  
-             "Harrisburg, Pennsylvania", "Providence, Rhode Island", "Columbia, South Carolina",
-             "Pierre, South Dakota", "Nashville, Tennessee", "Austin, Texas", "Salt Lake City, Utah",
-             "Montpelier, Vermont", "Richmond, Virginia", "Olympia, Washington", "Charleston, West Virginia",
-             "Madison, Wisconsin", "Cheyenne, Wyoming"
-)
 # Retrieves dataset for towns and cities in Canada/US with latitudinal and longitudinal data for API calls
 geo_data <- read.csv("scripts/geo_data.csv")
 
@@ -72,9 +51,13 @@ weatherData <- function(city, state, day) {
   # Retrieve API key from key.JSON (stored in JSON for security)
   key <- fromJSON(txt = "access-keys.json")$weather$key
   
+  # Convert given Date to UNIX format
+  unix.time.day <- as.numeric(as.POSIXct(anydate(day)))
+  
   # setting params for API  call
   base.url <- "https://api.darksky.net/forecast/"
   weather.uri <- paste0(base.url, key, "/", longitude, ",", latitude, ",", unix.time.day)
+  weather.params <- list(exclude = paste0("currently", ",", "minutely", ",", "daily", ",", "flags"))
 
   # retrieving data from API
   weather.response <- GET(weather.uri, query = weather.params)
@@ -87,8 +70,6 @@ weatherData <- function(city, state, day) {
   # convert UNIX time to Dates
   weather.df$time <- anytime(weather.df$time)
   
-  # convert Celsius temperatures to Fahrenheit
-  weather.df$temperature <- weather.df$temperature * (9/5) + 32
 
   return(weather.df) 
 }
