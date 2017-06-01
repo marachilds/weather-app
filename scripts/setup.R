@@ -66,10 +66,11 @@ weatherData <- function(city, state, day) {
   
   # Gets data sorted by hour
   weather.df <- weather.results$hourly$data
-  
+ 
   # convert UNIX time to Dates
-  weather.df$time <- anytime(weather.df$time)
-  
+  weather.df$time <- anytime(weather.df$time, asUTC = TRUE)
 
   return(weather.df) 
 }
+
+?anytime
