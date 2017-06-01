@@ -17,6 +17,11 @@ source('scripts/setup.R')
 # shinyServer
 shinyServer(function(input, output) {
   
+  #Plot
+  output$mainPlot <- renderPlot({
+    
+  })
+  
   # Text rendering for about and insights
   output$about <- renderText({about})
   output$insights <- renderText({insights})
