@@ -13,6 +13,8 @@ library(anytime)
 
 # Scripts
 source('scripts/setup.R')
+source('scripts/analysis.R')
+source('scripts/build.R')
 
 # shinyServer
 shinyServer(function(input, output) {
