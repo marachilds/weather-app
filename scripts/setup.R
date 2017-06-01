@@ -51,7 +51,7 @@ geo_data <- read.csv("scripts/geo_data.csv")
 
 city <- "Portland"
 state <- "ME"
-day <- ""
+day <- "28 May 2017"
 
 # Retrieves a data frame with weather data for the specified day with the given city and state,
 # with hourly time block starting from midnight of the day requested, 
