@@ -1,21 +1,20 @@
+# Read in scripts
+source('scripts/setup.R')
+
 # Temperature Line Graph
-temperature <- plot_ly(data, 
-                   x = ~rating,
-                   y = ~get(input$y), 
-                   color = ~get(input$color),
+temperature <- plot_ly(weather.df, 
+                   x = ~time,
+                   y = ~temperature, 
                    colors = "PuRd",
-                   size = ~get(input$size),
                    type = 'scatter', 
                    mode = 'markers',
                    hoverinfo = 'text',
                    text = ~paste0('Cereal: ', cereal$cereal.name,
                                   '</br>', "Manufacturer: ", cereal$mfr),
-                   position = 'dodge',
                    marker = list(colorbar = list(title = input$color)))  %>%
-  layout(title = "Cereal Nutrition by Rating", 
+  layout(title = "Title Here", 
          xaxis = x, 
-         yaxis = y,
-         margin = list(b = 160), 
-         xaxis = list(tickangle = 45))
+         yaxis = y
+         )
 
 plotly_build(p)

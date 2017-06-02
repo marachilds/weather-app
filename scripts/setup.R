@@ -23,7 +23,6 @@ findLatLong <- function(geo_db, city, state) {
 
 
 # Global Variables 
-# ----------------
 # Options list for states and capital cities
 cities <- c("Montgomery, Alabama", "Juneau, Alaska", "Phoenix, Arizona",
             "Little Rock, Arkansas", "Sacramento, California", "Denver, Colorado",
@@ -95,4 +94,3 @@ weatherData <- function(city, state, day) {
 
   return(weather.df) 
 }
-
