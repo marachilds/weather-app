@@ -2,6 +2,7 @@
 
 # Libraries
 library(dplyr)
+library(rgeos)
 library(shiny)
 library(plotly)
 library(httr)
@@ -19,14 +20,10 @@ source('scripts/about.R')
 # shinyServer
 shinyServer(function(input, output) {
   
-  location <- str_split_fixed(input$city, ", ", 2)
   selectData <- reactive({
+    location <- str_split_fixed(input$city, ", ", 2)
     my.data <- weatherData(location[,1], location[,2], input$date)
     return(my.data)
-  })
-  
-  results <- reactive({
-    return(analysis(location[,1], location[,2], input$date))
   })
   
   #Plot
@@ -42,7 +39,8 @@ shinyServer(function(input, output) {
                        type = 'scatter', 
                        mode = 'lines+markers',
                        hoverinfo = 'text',
-                       text = ~paste0('</br>', "Time: ", selectData()$time.only,
+                       text = ~paste0('Location: ', ~get(input$city),
+                                      '</br>', "Time: ", selectData()$time.only,
                                       '</br>', "Temperature: ", selectData()$temperature)) %>%
       layout(title = paste("Weather in", input$city, "on", input$date), 
              xaxis = x) %>% 
