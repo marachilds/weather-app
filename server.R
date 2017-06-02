@@ -57,7 +57,9 @@ shinyServer(function(input, output) {
   
   output$insights <- renderText({
     
-    analysis(input$date, location[,1], location[,2])
+    insight <- analysis(input$date, location[,1], location[,2])
+    
+    print(insight)
     
   })
   
