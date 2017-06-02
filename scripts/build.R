@@ -6,8 +6,8 @@ my.data <-
 
 # Temperature Line Graph
 thePlot <- plot_ly(my.data, 
-                   x = ~mpg,
-                   y = ~cyl, 
+                   x = ~time,
+                   y = ~temperature, 
                    colors = "PuRd",
                    type = 'scatter', 
                    mode = 'lines+markers',
