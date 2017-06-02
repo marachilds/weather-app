@@ -44,7 +44,9 @@ shinyServer(function(input, output) {
                        mode = 'lines+markers',
                        hoverinfo = 'text',
                        text = ~paste0('</br>', "Time: ", selectData()$time.only,
-                                      '</br>', "Temperature: ", selectData()$temperature)) %>%
+                                      '</br>', "Temperature: ", selectData()$temperature,
+                                      '</br>', "Wind Speed: ", selectData()$windSpeed,
+                                      '</br>', "Cloud Coverage: ", selectData()$cloudCover)) %>%
       layout(title = paste("Weather in", input$city, "on", input$date), 
              xaxis = x) %>% 
       add_trace(y = ~windSpeed, name = 'Wind Speed', mode = 'lines+markers') %>% 
