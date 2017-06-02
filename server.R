@@ -14,8 +14,8 @@ library(shinythemes)
 
 # Scripts
 source('scripts/setup.R')
-#source('scripts/analysis.R')
-#source('scripts/build.R')
+source('scripts/analysis.R')
+source('scripts/about.R')
 
 # shinyServer
 shinyServer(function(input, output) {
@@ -52,7 +52,13 @@ shinyServer(function(input, output) {
   })
 
   # Text rendering for about and insights
+  
   output$about <- renderText({about})
-  output$insights <- renderText({insights})
+  
+  output$insights <- renderText({
+    
+    analysis(input$date, location[,1], location[,2])
+    
+  })
   
 })

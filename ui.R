@@ -3,10 +3,6 @@ library(shiny)
 library(plotly)
 library(shinythemes)
 
-# Read in source scripts
-#source('scripts/setup.R')
-#source('scripts/analysis.R')
-
 # Create Shiny UI
 shinyUI(fluidPage(theme = shinytheme("superhero"),
   
@@ -35,14 +31,13 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       tabsetPanel(
         
         # Plot panel
-        tabPanel("Plot", plotlyOutput('mainPlot', height = "600px", width = "800px"))
-        #,
+        tabPanel("Plot", plotlyOutput('mainPlot', height = "600px", width = "800px")),
         
         # Insights panel
-        #tabPanel("Insights", textOutput('insights')),
+        tabPanel("Insights", textOutput('insights')),
 
         # About panel
-        #tabPanel("About", textOutput('about'))
+        tabPanel("About", textOutput('about'))
       )
       )
     )
