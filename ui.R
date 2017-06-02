@@ -3,6 +3,10 @@ library(shiny)
 library(plotly)
 library(shinythemes)
 
+# scripts
+source('scripts/setup.R')
+source('scripts/about.R')
+
 # Create Shiny UI
 shinyUI(fluidPage(theme = shinytheme("superhero"),
   
@@ -19,10 +23,8 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       
       # Returns YYYY-MM-DD
       dateInput("date", "Select Date", max = Sys.Date(), value = Sys.Date())#,
-      
-      # Returns "1" and/or "2"
-      # checkboxGroupInput("plots", "Select Data", choices = plots)
-      
+
+
     ),
     
     # Plot it!
