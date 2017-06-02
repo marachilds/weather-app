@@ -2,7 +2,6 @@
 
 # Libraries
 library(dplyr)
-library(rgeos)
 library(shiny)
 library(plotly)
 library(httr)
@@ -14,15 +13,19 @@ library(shinythemes)
 
 # Scripts
 source('scripts/setup.R')
-#source('scripts/analysis.R')
+source('scripts/analysis.R')
 
 # shinyServer
 shinyServer(function(input, output) {
   
+  location <- str_split_fixed(input$city, ", ", 2)
   selectData <- reactive({
-    location <- str_split_fixed(input$city, ", ", 2)
     my.data <- weatherData(location[,1], location[,2], input$date)
     return(my.data)
+  })
+  
+  results <- reactive({
+    return(analysis(location[,1], location[,2], input$date))
   })
   
   #Plot
@@ -52,6 +55,6 @@ shinyServer(function(input, output) {
 
   # Text rendering for about and insights
   output$about <- renderText({about})
-  output$insights <- renderText({insights})
+  output$insights <- renderText({results})
   
 })
