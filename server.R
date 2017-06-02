@@ -20,10 +20,12 @@ source('scripts/build.R')
 shinyServer(function(input, output) {
   
   #Plot
-  output$mainPlot <- renderPlotly({thePlot
+  output$mainPlot <- renderPlotly({
+    
+    plotly_build("thePlot")
     
   })
-  
+
   # Text rendering for about and insights
   output$about <- renderText({about})
   output$insights <- renderText({insights})

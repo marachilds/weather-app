@@ -22,10 +22,10 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       selectInput("city", "Select City", choices = cities),
       
       # Returns YYYY-MM-DD
-      dateInput("date", "Select Date", max = Sys.Date()),
+      dateInput("date", "Select Date", max = Sys.Date(), value = Sys.Date())#,
       
-      # Returns "1" "2" and/or "3"
-      checkboxGroupInput("plots", "Select Data", choices = plots)
+      # Returns "1" and/or "2"
+      # checkboxGroupInput("plots", "Select Data", choices = plots)
       
     ),
     
