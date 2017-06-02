@@ -3,6 +3,10 @@ library(shiny)
 library(plotly)
 library(shinythemes)
 
+# scripts
+source('scripts/setup.R')
+source('scripts/about.R')
+
 # Create Shiny UI
 shinyUI(fluidPage(theme = shinytheme("superhero"),
   
