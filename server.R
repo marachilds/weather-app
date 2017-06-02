@@ -42,8 +42,7 @@ shinyServer(function(input, output) {
                        type = 'scatter', 
                        mode = 'lines+markers',
                        hoverinfo = 'text',
-                       text = ~paste0('Location: ', ~get(input$city),
-                                      '</br>', "Time: ", selectData()$time.only,
+                       text = ~paste0('</br>', "Time: ", selectData()$time.only,
                                       '</br>', "Temperature: ", selectData()$temperature)) %>%
       layout(title = paste("Weather in", input$city, "on", input$date), 
              xaxis = x) %>% 
