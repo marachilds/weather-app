@@ -2,7 +2,6 @@
 
 # Libraries
 library(dplyr)
-library(rgeos)
 library(shiny)
 library(plotly)
 library(httr)
@@ -26,6 +25,10 @@ shinyServer(function(input, output) {
     return(my.data)
   })
   
+  results <- reactive({
+    return(analysis(location[,1], location[,2], input$date))
+  })
+  
   #Plot
   output$mainPlot <- renderPlotly({
     x <- list(
@@ -39,8 +42,7 @@ shinyServer(function(input, output) {
                        type = 'scatter', 
                        mode = 'lines+markers',
                        hoverinfo = 'text',
-                       text = ~paste0('Location: ', ~get(input$city),
-                                      '</br>', "Time: ", selectData()$time.only,
+                       text = ~paste0('</br>', "Time: ", selectData()$time.only,
                                       '</br>', "Temperature: ", selectData()$temperature)) %>%
       layout(title = paste("Weather in", input$city, "on", input$date), 
              xaxis = x) %>% 
@@ -50,18 +52,9 @@ shinyServer(function(input, output) {
     plotly_build(thePlot)
     
   })
-
+  
   # Text rendering for about and insights
   output$about <- renderText({about})
-
-  output$insights <- renderText({
-    
-    #insight <- 
-      
-      analysis(input$date, location[,1], location[,2])
-    
-    #return(insight)
-    
-  })
+  output$insights <- renderText({insights})
   
 })
