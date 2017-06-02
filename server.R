@@ -10,6 +10,7 @@ library(stringr)
 library(rjson)
 library(jsonlite)
 library(anytime)
+library(shinythemes)
 
 # Scripts
 source('scripts/setup.R')
