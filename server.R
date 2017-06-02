@@ -20,7 +20,7 @@ source('scripts/build.R')
 shinyServer(function(input, output) {
   
   #Plot
-  output$mainPlot <- renderPlot({
+  output$mainPlot <- renderPlot({thePlot
     
   })
   

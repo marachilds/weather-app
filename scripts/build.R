@@ -2,7 +2,7 @@
 source('scripts/setup.R')
 
 # Temperature Line Graph
-temperature <- plot_ly(weather.df, 
+thePlot <- plot_ly(weather.df, 
                    x = ~time,
                    y = ~temperature, 
                    colors = "PuRd",
