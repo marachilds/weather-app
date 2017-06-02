@@ -37,7 +37,8 @@ shinyServer(function(input, output) {
     
     thePlot <- plot_ly(selectData(), 
                        x = ~time,
-                       y = ~temperature, 
+                       y = ~temperature,
+                       name = 'Temperature',
                        colors = "PuRd",
                        type = 'scatter', 
                        mode = 'lines+markers',
