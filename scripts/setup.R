@@ -97,6 +97,9 @@ weatherData <- function(city, state, day) {
 
   # separate date and time
   weather.df$time.only <- format(as.POSIXct(weather.df$time) , format = "%H:%M:%S")
+  
+  # scale up cloud cover
+  weather.df$cloudCover <- weather.df$cloudCover * 100
  
   return(weather.df) 
 }
