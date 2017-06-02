@@ -13,14 +13,14 @@ library(anytime)
 
 # Scripts
 source('scripts/setup.R')
-source('scripts/analysis.R')
+#source('scripts/analysis.R')
 source('scripts/build.R')
 
 # shinyServer
 shinyServer(function(input, output) {
   
   #Plot
-  output$mainPlot <- renderPlot({thePlot
+  output$mainPlot <- renderPlotly({thePlot
     
   })
   

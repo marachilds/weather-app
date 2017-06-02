@@ -40,6 +40,9 @@ cities <- c("Montgomery, AL", "Juneau, AK", "Phoenix, AZ",
             "Madison, WI", "Cheyenne, WY"
 )
 
+# Plot list
+plots <- c("Wind speed", "Cloud coverage")
+
 # Retrieves dataset for towns and cities in Canada/US with latitudinal and longitudinal data for API calls
 geo_data <- read.csv("scripts/geo_data.csv")
 
@@ -64,14 +67,15 @@ weatherData <- function(city, state, day) {
   unix.time.day <- as.numeric(as.POSIXct(anydate(day)))
   
   # Retrieve API key from key.JSON (stored in JSON for security)
-  key <- fromJSON(txt = "access-keys.json")$weather$key
+  # key <- "f2816b4bb0266a96e77991a187b35d9c"
+    # fromJSON(txt = "access-keys.json")$weather$key
   
   # Convert given Date to UNIX format
   unix.time.day <- as.numeric(as.POSIXct(anydate(day)))
   
   # setting params for API  call
   base.url <- "https://api.darksky.net/forecast/"
-  weather.uri <- paste0(base.url, key, "/", latitude, ",", longitude, ",", unix.time.day)
+  weather.uri <- paste0(base.url, "f2816b4bb0266a96e77991a187b35d9c", "/", latitude, ",", longitude, ",", unix.time.day)
   weather.params <- list(exclude = paste0("currently", ",", "minutely", ",", "daily", ",", "flags"))
 
   # retrieving data from API
@@ -86,13 +90,14 @@ weatherData <- function(city, state, day) {
   weather.df <- weather.results$hourly$data
  
   # convert UNIX time to Dates
-  weather.df$time <- anytime(weather.df$time, tz = location.timezone)
+  weather.df$time <- anytime(weather.df$time, tz = location.timezone, asUTC = FALSE)
   
   # separate date and time
   weather.df$time.only <- format(as.POSIXct(weather.df$time) , format = "%H:%M:%S")
   weather.df <- weather.df %>% mutate(time, date.only = as.Date(time))
  
   # return weather.df
+  #return(location.timezone)
   return(weather.df) 
 }
 

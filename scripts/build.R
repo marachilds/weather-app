@@ -2,19 +2,22 @@
 source('scripts/setup.R')
 
 # Temperature Line Graph
-thePlot <- plot_ly(weather.df, 
+thePlot <- plot_ly(my.data, 
                    x = ~time,
                    y = ~temperature, 
                    colors = "PuRd",
                    type = 'scatter', 
-                   mode = 'markers',
+                   mode = 'lines+markers',
                    hoverinfo = 'text',
-                   text = ~paste0('Cereal: ', cereal$cereal.name,
-                                  '</br>', "Manufacturer: ", cereal$mfr),
+                   text = ~paste0('Location: ', ~get(input$city),
+                                  '</br>', "Time: ", my.data$time.only,
+                                  '</br>', "Temperature ", my.data$temperature),
                    marker = list(colorbar = list(title = input$color)))  %>%
   layout(title = "Title Here", 
          xaxis = x, 
          yaxis = y
          )
 
-plotly_build(p)
+trace.wind <- "%>% add_trace(y = ~windSpeed, name = 'Wind Speed', mode = 'lines+markers')"
+
+trace.cloud <- "%>% add_trace(y = ~cloudCover, name = 'Cloud Coverage', mode = 'lines+markers')"
