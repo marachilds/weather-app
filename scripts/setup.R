@@ -86,7 +86,7 @@ weatherData <- function(city, state, day) {
   weather.df <- weather.results$hourly$data
  
   # convert UNIX time to Dates
-  weather.df$time <- anytime(weather.df$time, asUTC = location.timezone)
+  weather.df$time <- anytime(weather.df$time, tz = location.timezone)
   
   # convert temperatures from Celsius to Fahrenheit
   weather.df$temperature <- (weather.df$temperature * (9/5)) + 32
@@ -94,3 +94,5 @@ weatherData <- function(city, state, day) {
 
   return(weather.df) 
 }
+
+data <- weatherData("Montgomery", "AL", "25 May 2017")
