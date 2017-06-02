@@ -53,8 +53,7 @@ shinyServer(function(input, output) {
 
   # Text rendering for about and insights
   output$about <- renderText({about})
-  output$insights <- renderText({insights})
-  
+
   output$insights <- renderText({
     
     #insight <- 
