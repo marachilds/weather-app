@@ -2,6 +2,7 @@ library(jsonlite)
 library(rgeos)
 library(rgdal)
 library(httr)
+library(plyr)
 library(dplyr)
 library(anytime)
 
@@ -88,18 +89,17 @@ weatherData <- function(city, state, day) {
   
   # Gets data sorted by hour
   weather.df <- weather.results$hourly$data
- 
-  # convert UNIX time to Dates
-  weather.df$time <- anytime(weather.df$time, tz = location.timezone, asUTC = FALSE)
+  weather.df <- ldply(weather.df, data.frame)
   
+  # convert UNIX time to Dates
+  num.time <- as.numeric(weather.df$time)
+  weather.df$time <- anytime(num.time, tz = location.timezone, asUTC = FALSE)
+
   # separate date and time
   weather.df$time.only <- format(as.POSIXct(weather.df$time) , format = "%H:%M:%S")
-  weather.df <- weather.df %>% mutate(time, date.only = as.Date(time))
  
-  # return weather.df
-  #return(location.timezone)
   return(weather.df) 
 }
 
 # test
-data <- weatherData("Olympia", "WA", "2017-05-25")
+data <- weatherData("Montgomery", "AL", "2017-05-25")
