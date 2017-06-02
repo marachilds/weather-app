@@ -21,7 +21,8 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       selectInput("city", "Select City", choices = cities),
       
       # Returns YYYY-MM-DD
-      dateInput("date", "Select Date", max = Sys.Date()),
+      dateInput("date", "Select Date", max = Sys.Date())
+    ),
     
     # Plot it!
     mainPanel(
@@ -40,5 +41,4 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       )
     )
   )
-)
 )
