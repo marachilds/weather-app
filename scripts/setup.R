@@ -71,7 +71,7 @@ weatherData <- function(city, state, day) {
   
   # setting params for API  call
   base.url <- "https://api.darksky.net/forecast/"
-  weather.uri <- paste0(base.url, key, "/", longitude, ",", latitude, ",", unix.time.day)
+  weather.uri <- paste0(base.url, key, "/", latitude, ",", longitude, ",", unix.time.day)
   weather.params <- list(exclude = paste0("currently", ",", "minutely", ",", "daily", ",", "flags"))
 
   # retrieving data from API
@@ -88,10 +88,6 @@ weatherData <- function(city, state, day) {
   # convert UNIX time to Dates
   weather.df$time <- anytime(weather.df$time, tz = location.timezone)
   
-  # convert temperatures from Celsius to Fahrenheit
-  # weather.df$temperature <- (weather.df$temperature * (9/5)) + 32
-  # weather.df$apparentTemperature <- (weather.df$apparentTemperature * (9/5)) + 32
-
   # separate date and time
   #weather.df %>% mutate()
   
