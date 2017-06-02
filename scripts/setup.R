@@ -47,10 +47,6 @@ plots <- c("Wind speed", "Cloud coverage")
 # Retrieves dataset for towns and cities in Canada/US with latitudinal and longitudinal data for API calls
 geo_data <- read.csv("scripts/geo_data.csv")
 
-city <- "Portland"
-state <- "ME"
-day <- "28 May 2017"
-
 # Retrieves a data frame with weather data for the specified day with the given city and state,
 # with hourly time block starting from midnight of the day requested, 
 # continuing until midnight of the following day. Hourly time blocks start from the current system time.
@@ -103,6 +99,3 @@ weatherData <- function(city, state, day) {
  
   return(weather.df) 
 }
-
-# test
-data <- weatherData("Montgomery", "AL", "2017-05-25")

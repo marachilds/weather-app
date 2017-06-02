@@ -3,8 +3,8 @@ title: weather-app
 account: marachilds
 server: shinyapps.io
 appId: 185650
-bundleId: 850057
+bundleId: 850118
 url: https://marachilds.shinyapps.io/weather-app/
-when: 1496383394.34917
+when: 1496387620.95493
 asMultiple: FALSE
 asStatic: FALSE
