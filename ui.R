@@ -4,13 +4,14 @@ library(plotly)
 library(shinythemes)
 
 # Read in source scripts
-source('scripts/setup.R')
+#source('scripts/setup.R')
+#source('scripts/analysis.R')
 
 # Create Shiny UI
 shinyUI(fluidPage(theme = shinytheme("superhero"),
   
   # Application title
-  titlePanel("Twitter and Weather"),
+  titlePanel("What's the Temperature?"),
   
   # Sidebar with select inputs for date, time, and city
   sidebarLayout(
@@ -21,7 +22,12 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       selectInput("city", "Select City", choices = cities),
       
       # Returns YYYY-MM-DD
-      dateInput("date", "Select Date", max = Sys.Date()),
+      dateInput("date", "Select Date", max = Sys.Date(), value = Sys.Date())#,
+      
+      # Returns "1" and/or "2"
+      # checkboxGroupInput("plots", "Select Data", choices = plots)
+      
+    ),
     
     # Plot it!
     mainPanel(
@@ -29,16 +35,16 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
       tabsetPanel(
         
         # Plot panel
-        tabPanel("Plot", plotlyOutput('mainPlot', height = "600px", width = "800px")),
+        tabPanel("Plot", plotlyOutput('mainPlot', height = "600px", width = "800px"))
+        #,
         
         # Insights panel
-        tabPanel("Insights", textOutput('insights')),
+        #tabPanel("Insights", textOutput('insights')),
 
         # About panel
-        tabPanel("About", textOutput('about'))
+        #tabPanel("About", textOutput('about'))
       )
       )
     )
   )
-)
 )
