@@ -19,8 +19,8 @@ source('scripts/about.R')
 shinyServer(function(input, output) {
   
   #Seperates location into city and state, retrieves data for specified set
-  location <- str_split_fixed(input$city, ", ", 2)
   selectData <- reactive({
+    location <- str_split_fixed(input$city, ", ", 2)
     my.data <- weatherData(location[,1], location[,2], input$date)
     return(my.data)
   })
