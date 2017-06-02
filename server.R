@@ -13,7 +13,6 @@ library(shinythemes)
 
 # Scripts
 source('scripts/setup.R')
-source('scripts/analysis.R')
 source('scripts/about.R')
 
 # shinyServer
@@ -57,14 +56,6 @@ shinyServer(function(input, output) {
   
   output$about <- renderText({about})
   
-  output$insights <- renderText({
-    
-    #insight <- 
-      
-      analysis(input$date, location[,1], location[,2])
-    
-    #return(insight)
-    
-  })
+  output$insights <- renderText({insights})
   
 })
