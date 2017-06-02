@@ -89,9 +89,12 @@ weatherData <- function(city, state, day) {
   weather.df$time <- anytime(weather.df$time, tz = location.timezone)
   
   # separate date and time
-  #weather.df %>% mutate()
-  
+  weather.df$time.only <- format(as.POSIXct(weather.df$time) , format = "%H:%M:%S")
+  weather.df <- weather.df %>% mutate(time, date.only = as.Date(time))
+ 
+  # return weather.df
   return(weather.df) 
 }
 
-data <- weatherData("Montgomery", "AL", "25 May 2017")
+# test
+data <- weatherData("Olympia", "WA", "2017-05-25")
