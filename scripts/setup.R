@@ -86,15 +86,11 @@ weatherData <- function(city, state, day) {
   weather.df <- weather.results$hourly$data
  
   # convert UNIX time to Dates
-<<<<<<< HEAD
-  weather.df$time <- anytime(weather.df$time, asUTC = TRUE)
-=======
   weather.df$time <- anytime(weather.df$time, tz = location.timezone)
   
   # separate date and time
   #weather.df %>% mutate()
->>>>>>> d1c9a9f35426e0efeb61b1f70698042f8d2ba06f
-  
+
   return(weather.df) 
 }
 
