@@ -2,7 +2,8 @@
 source('scripts/setup.R')
 source('ui.R')
 
-my.data <-
+location <- str_split_fixed(input$city, ", ", 2)
+my.data <- weatherData(location$1, location$2, input$date)
 
 # Temperature Line Graph
 thePlot <- plot_ly(my.data, 
